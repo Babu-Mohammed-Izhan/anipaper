@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, Text } from 'react-native';
 
 const Animecard = ({ data }) => {
   return (
     <View style={styles.card}>
       <Image style={styles.cover} source={data.image_url} />
+      <Text style={styles.title}>{data.title}</Text>
     </View>
   );
 };
@@ -19,6 +20,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 10,
+  },
+  title: {
+    color: 'white',
+    textAlign: 'center',
   },
 });
 

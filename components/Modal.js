@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     backgroundColor: 'black',
     paddingHorizontal: '20px',
+    minHeight: 2000,
   },
   modaltitle: {
     fontSize: 20,
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
   modalbutton: {
     marginVertical: '20px',
-    width: '50%',
+    width: 100,
     marginHorizontal: 'auto',
     backgroundColor: 'purple',
     color: 'white',
