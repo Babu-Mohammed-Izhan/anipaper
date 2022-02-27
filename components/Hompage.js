@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Pressable, SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
+import {
+  StyleSheet,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  View,
+} from 'react-native';
 import Navbar from './Navbar';
 import Animecard from './Animecard';
 import Modal from './Modal';
@@ -23,7 +30,7 @@ const Homepage = () => {
 
   const handlePress = (a) => {
     setAnimeid(a.mal_id);
-    setVisible(true)
+    setVisible(true);
     console.log('Pressed');
   };
 
@@ -58,22 +65,31 @@ const Homepage = () => {
     fetchanime();
   }, []);
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+      }}
+    >
       <Navbar />
-          <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-      <View style={styles.grid}>
-        {animes.map((a) => {
-          return (
-            <Pressable key={a.rank} onPress={() => handlePress(a)}>
-              <Animecard data={a} />
-            </Pressable>
-          );
-        })}
-      </View>
-            </ScrollView>
-    </SafeAreaView>
-      <Modal data={foundanime} visible={visible} setVisible={setVisible} />
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.grid}>
+            {animes.map((a) => {
+              return (
+                <Pressable key={a.rank} onPress={() => handlePress(a)}>
+                  <Animecard data={a} />
+                </Pressable>
+              );
+            })}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+      {foundanime && (
+        <Modal data={foundanime} visible={visible} setVisible={setVisible} />
+      )}
     </View>
   );
 };
@@ -82,11 +98,13 @@ const styles = StyleSheet.create({
   grid: {
     display: 'grid',
     gridTemplateColumns: 'auto auto',
-    gridGap: '10px'
+    gridGap: '10px',
   },
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
+    backgroundColor: 'black',
+    marginVertical: 20,
   },
   scrollView: {
     marginHorizontal: 20,

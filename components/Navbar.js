@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-
 const Navbar = () => {
   return (
     <View style={styles.navbar}>
@@ -16,13 +15,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    width: '100%'
+    width: '100%',
   },
-  logo:{
+  logo: {
     fontSize: 50,
     fontWeight: '700',
-    color: 'purple'
-  }
+    color: 'purple',
+  },
 });
 
 export default Navbar;

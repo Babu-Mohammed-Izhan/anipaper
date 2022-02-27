@@ -1,10 +1,10 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-const Animecard = ({ data }) => {
+const Wallpapercard = ({ data }) => {
   return (
     <View style={styles.card}>
-      <Image style={styles.cover} source={data.image_url} />
+      <Image style={styles.cover} source={data.thumbnailUrl} />
     </View>
   );
 };
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Animecard;
+export default Wallpapercard;
