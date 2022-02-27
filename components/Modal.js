@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     borderRadius: 5,
+    fontFamily: 'sans-serif',
   },
   container: {
     flex: 1,
