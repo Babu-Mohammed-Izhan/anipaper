@@ -1,16 +1,28 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, View, Text } from 'react-native';
+
+
 const Navbar = () => {
   return (
-    <Layout style={styles.navbar}>
-      <Text>Anipaper</Text>
-    </Layout>
+    <View style={styles.navbar}>
+      <Text style={styles.logo}>Anipaper</Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  navbar: {},
+  navbar: {
+    padding: '20px',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    width: '100%'
+  },
+  logo:{
+    fontSize: 50,
+    fontWeight: '700',
+    color: 'purple'
+  }
 });
 
 export default Navbar;

@@ -1,26 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { Button, Card, Modal, Text } from '@ui-kitten/components';
+import { StyleSheet, View, Image, Modal, Text, Button } from 'react-native';
+import axios from 'axios';
 
-const Modal = ({ title }) => {
-  const [visible, setVisible] = useState(false);
+const Animemodal = ({ data, setVisible, visible }) => {
 
-  useEffect(() => {}, []);
+
+  // const fetchWallpapers = async () => {
+
+  //   const wallpaperData = await axios.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyDyF8GnTli-MVQSi9SRNYr46b61XYQxEoo')
+    
+  // }
+  // useEffect(() => {
+
+  //   'AIzaSyDyF8GnTli-MVQSi9SRNYr46b61XYQxEoo'
+  //    console.log(data);
+  // }, [visible]);
+
+
 
   return (
-    <View style={styles.container}>
-      <Button onPress={() => setVisible(true)}>TOGGLE MODAL</Button>
-
-      <Modal
+<View style={styles.container}>
+{
+  data && (
+ <Modal
         visible={visible}
         backdropStyle={styles.backdrop}
         onBackdropPress={() => setVisible(false)}
       >
-        <Card disabled={true}>
-          <Text>Welcome to UI Kitten 😻</Text>
-          <Button onPress={() => setVisible(false)}>DISMISS</Button>
-        </Card>
+        <View style={styles.modal}>
+          <Text style={styles.modaltitle}>{data.title}</Text>
+          <Button style={styles.modalbutton} onPress={() => setVisible(false)} title='Close' />
+
+          <Image  style={styles.image} source={data.image_url} />
+          
+        </View>
       </Modal>
+  )
+}
+     
     </View>
   );
 };
@@ -28,10 +45,29 @@ const Modal = ({ title }) => {
 const styles = StyleSheet.create({
   container: {
     minHeight: 192,
+    position: 'absolute'
+    
   },
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
+  image:{
+     height: '300px',
+    width: '170px',
+    borderRadius: 10,
+  },
+  modal:{
+    display:'flex',
+    padding: '20px'
+  },
+  modaltitle:{
+    fontSize: 20,
+    padding: '10px',
+    fontWeight: '700'
+  },
+   modalbutton : {
+     margin: '20px'
+   }
 });
 
-export default Modal;
+export default Animemodal;

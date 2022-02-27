@@ -1,22 +1,31 @@
 import { useState, useEffect } from 'react';
-import { Layout, Text } from '@ui-kitten/components';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Pressable, SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import Navbar from './Navbar';
 import Animecard from './Animecard';
+import Modal from './Modal';
 import axios from 'axios';
 
 const Homepage = () => {
   const [animes, setanimes] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [Animeid, setAnimeid] = useState(null);
+  const foundanime = animes.find((anime) => {
+    return anime.mal_id === Animeid;
+  });
 
   const [animedata, setAnimedata] = useState({
     type: 'anime',
     page: 1,
     subtype: 'tv',
   });
-
   const [search, setSearch] = useState('');
-
   const [active, setActive] = useState(1);
+
+  const handlePress = (a) => {
+    setAnimeid(a.mal_id);
+    setVisible(true)
+    console.log('Pressed');
+  };
 
   const getData = async ({ type, page, subtype }) => {
     const data = await axios.get(
@@ -49,22 +58,38 @@ const Homepage = () => {
     fetchanime();
   }, []);
   return (
-    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' }}>
       <Navbar />
-      <Text category="h1">Hello</Text>
-      <Layout style={styles.grid}>
+          <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+      <View style={styles.grid}>
         {animes.map((a) => {
-          return <Animecard data={a} key={a.rank} />;
+          return (
+            <Pressable key={a.rank} onPress={() => handlePress(a)}>
+              <Animecard data={a} />
+            </Pressable>
+          );
         })}
-      </Layout>
-    </Layout>
+      </View>
+            </ScrollView>
+    </SafeAreaView>
+      <Modal data={foundanime} visible={visible} setVisible={setVisible} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   grid: {
     display: 'grid',
-    'grid-template-columns': 'auto auto',
+    gridTemplateColumns: 'auto auto',
+    gridGap: '10px'
+  },
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    marginHorizontal: 20,
   },
 });
 

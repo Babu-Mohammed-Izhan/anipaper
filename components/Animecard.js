@@ -1,19 +1,19 @@
-import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 const Animecard = ({ data }) => {
   return (
-    <Card>
+    <View>
       <Image style={styles.cover} source={data.image_url} />
-    </Card>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   cover: {
-    height: '400px',
-    width: '200px',
+    height: '300px',
+    width: '170px',
+    borderRadius: 10
   },
 });
 
