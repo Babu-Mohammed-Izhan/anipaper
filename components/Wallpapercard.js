@@ -18,6 +18,7 @@ const Wallpapercard = ({ data }) => {
       FileSystem.documentDirectory + `${data.imageId}${data.encodingFormat}`;
     FileSystem.downloadAsync(link, fileUri)
       .then(({ uri }) => {
+        console.log(uri);
         saveFile(uri);
       })
       .catch((error) => {
