@@ -11,6 +11,7 @@ import Navbar from './Navbar';
 import Animecard from './Animecard';
 import Modal from './Modal';
 import axios from 'axios';
+import { FlatGrid } from 'react-native-super-grid';
 
 const Homepage = () => {
   const [animes, setanimes] = useState([]);
@@ -76,15 +77,17 @@ const Homepage = () => {
       <Navbar />
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <View style={styles.grid}>
-            {animes.map((a) => {
-              return (
-                <Pressable key={a.rank} onPress={() => handlePress(a)}>
-                  <Animecard data={a} />
-                </Pressable>
-              );
-            })}
-          </View>
+          <FlatGrid
+            itemDimension={140}
+            spacing={10}
+            data={animes}
+            style={styles.gridView}
+            renderItem={({ item }) => (
+              <Pressable key={item.rank} onPress={() => handlePress(item)}>
+                <Animecard data={item} />
+              </Pressable>
+            )}
+          />
         </ScrollView>
       </SafeAreaView>
       {foundanime && (
@@ -95,16 +98,15 @@ const Homepage = () => {
 };
 
 const styles = StyleSheet.create({
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'auto auto',
-    gridGap: '10px',
+  gridView: {
+    flex: 1,
   },
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     backgroundColor: 'black',
     marginVertical: 20,
+    paddingHorizontal: 20,
   },
   scrollView: {
     marginHorizontal: 20,

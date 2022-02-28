@@ -11,7 +11,8 @@ const Navbar = () => {
 
 const styles = StyleSheet.create({
   navbar: {
-    padding: '20px',
+    paddingVertical: '10px',
+    paddingHorizontal: '20px',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',

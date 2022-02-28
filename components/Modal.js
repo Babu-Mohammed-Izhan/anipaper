@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import Wallpapercard from './Wallpapercard';
+import { FlatGrid } from 'react-native-super-grid';
 
 const Animemodal = ({ data, setVisible, visible }) => {
   const [wallpapers, setWallpapers] = useState([]);
@@ -52,12 +53,15 @@ const Animemodal = ({ data, setVisible, visible }) => {
                 Close
               </TouchableOpacity>
 
-              <View style={styles.grid}>
-                {wallpapers &&
-                  wallpapers.map((w) => {
-                    return <Wallpapercard data={w} key={w.title} />;
-                  })}
-              </View>
+              <FlatGrid
+                itemDimension={120}
+                spacing={10}
+                data={wallpapers}
+                style={styles.grid}
+                renderItem={({ item }) => (
+                  <Wallpapercard data={item} key={item.title} />
+                )}
+              />
             </View>
           )}
         </ScrollView>
@@ -74,15 +78,10 @@ const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  image: {
-    height: '250px',
-    width: '140px',
-    borderRadius: 10,
-  },
   modal: {
     display: 'flex',
     backgroundColor: 'black',
-    paddingHorizontal: '20px',
+    paddingHorizontal: '10px',
     minHeight: 2000,
   },
   modaltitle: {
@@ -108,10 +107,7 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
   },
   grid: {
-    display: 'grid',
-    gridTemplateColumns: 'auto auto',
-    gridGap: '10px',
-    marginVertical: '20px',
+    marginVertical: 20,
   },
 });
 

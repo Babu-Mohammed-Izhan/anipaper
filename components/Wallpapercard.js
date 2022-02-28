@@ -46,13 +46,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   card: {
+    flex: 1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 5,
   },
   downloadbutton: {
-    marginVertical: '20px',
-    width: 100,
+    marginTop: 5,
+    width: '96%',
     marginHorizontal: 'auto',
     backgroundColor: 'purple',
     color: 'white',
